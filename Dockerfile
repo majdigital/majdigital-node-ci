@@ -3,7 +3,7 @@ FROM jenkins/jnlp-slave
 USER root
 
 # Install nodejs
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
   && apt-get install -y nodejs \
   && apt-get install -y rpm \
   && apt-get install -y ruby ruby-dev rubygems build-essential \
