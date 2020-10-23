@@ -46,4 +46,6 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     /var/lib/apt/lists/* \
     /var/tmp/*
 
+RUN npm install pm2 -g
+
 USER jenkins
