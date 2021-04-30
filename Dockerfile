@@ -3,7 +3,7 @@ FROM jenkins/jnlp-slave
 USER root
 
 # Install nodejs
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install -y nodejs \
   && apt-get install -y rpm \
   && apt-get install -y ruby ruby-dev rubygems build-essential \
@@ -20,12 +20,12 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 \
 # Install the latest versions of Google Chrome and Chromedriver
 RUN export DEBIAN_FRONTEND=noninteractive \
   && apt-get install \
-    unzip \
+  unzip \
   && \
   DL=https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
   && curl -sL "$DL" > /tmp/chrome.deb \
   && apt install --no-install-recommends --no-install-suggests -y \
-    /tmp/chrome.deb \
+  /tmp/chrome.deb \
   && CHROMIUM_FLAGS='--no-sandbox --disable-dev-shm-usage' \
   # Patch Chrome launch script and append CHROMIUM_FLAGS to the last line:
   && sed -i '${s/$/'" $CHROMIUM_FLAGS"'/}' /opt/google/chrome/google-chrome \
@@ -37,15 +37,15 @@ RUN export DEBIAN_FRONTEND=noninteractive \
   && mv chromedriver /usr/local/bin/ \
   # Remove obsolete files:
   && apt-get autoremove --purge -y \
-    unzip \
+  unzip \
   && apt-get clean \
   && rm -rf \
-    /tmp/* \
-    /usr/share/doc/* \
-    /var/cache/* \
-    /var/lib/apt/lists/* \
-    /var/tmp/*
+  /tmp/* \
+  /usr/share/doc/* \
+  /var/cache/* \
+  /var/lib/apt/lists/* \
+  /var/tmp/*
 
-RUN npm install pm2 -g
+# RUN npm install pm2 -g
 
 USER jenkins
