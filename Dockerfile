@@ -14,7 +14,8 @@ RUN export DEBIAN_FRONTEND=noninteractive \
   && apt-get install \
     unzip \
   && \
-  DL=https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+#  DL=https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+  DL=https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_87.0.4280.66-1_amd64.deb \
   && curl -sL "$DL" > /tmp/chrome.deb \
   && apt install --no-install-recommends --no-install-suggests -y \
     /tmp/chrome.deb \
@@ -22,7 +23,8 @@ RUN export DEBIAN_FRONTEND=noninteractive \
   # Patch Chrome launch script and append CHROMIUM_FLAGS to the last line:
   && sed -i '${s/$/'" $CHROMIUM_FLAGS"'/}' /opt/google/chrome/google-chrome \
   && BASE_URL=https://chromedriver.storage.googleapis.com \
-  && VERSION=$(curl -sL "$BASE_URL/LATEST_RELEASE") \
+#  && VERSION=$(curl -sL "$BASE_URL/LATEST_RELEASE") \
+  && VERSION="87.0.4280.20" \
   && curl -sL "$BASE_URL/$VERSION/chromedriver_linux64.zip" -o /tmp/driver.zip \
   && unzip /tmp/driver.zip \
   && chmod 755 chromedriver \
