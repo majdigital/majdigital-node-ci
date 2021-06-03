@@ -41,6 +41,6 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     /var/tmp/*
 
 # Install clever-tools
-RUN npm install clever-tools -g
+RUN npm install yarn clever-tools -g
 
 USER jenkins
