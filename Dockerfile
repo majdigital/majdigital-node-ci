@@ -9,7 +9,7 @@ RUN apt update && apt upgrade -y
 RUN apt install -y curl build-essential
 
 # Install Node.js
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
 RUN apt install -y nodejs
 
 # Install yarn & clever-tools
